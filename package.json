@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "npm": "^10.4.0"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.5"
+  }
+}
