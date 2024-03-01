@@ -38,3 +38,17 @@ Cypress.Commands.add('logout', () => {
   cy.get('#react-burger-menu-btn').click()
   cy.get('#logout_sidebar_link').click()
 });
+
+Cypress.Commands.add('clickAddToCartBtnFirstItem', () => {
+    cy.get('.inventory_item').first().find('button:contains("Add to cart")')
+        .should('contain.text', 'Add to cart').click()
+})
+
+Cypress.Commands.add('clickAddToCartBtnSecondItem', () => {
+  cy.get('.inventory_item').last().find('button:contains("Add to cart")')
+      .should('contain.text', 'Add to cart').click()
+})
+
+Cypress.Commands.add('readJsonFile', (filePath) => {
+  return cy.fixture(filePath);
+});

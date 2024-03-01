@@ -1,7 +1,3 @@
-function clickAddToCartBtn() {
-    cy.get('.inventory_item').find('[data-test="add-to-cart-sauce-labs-backpack"]')
-        .should('contain.text', 'Add to cart').click()
-}
 
 export class InventoryList {
 
@@ -28,12 +24,12 @@ export class InventoryList {
     }
 
     verifyAddToCartBtn() {
-        clickAddToCartBtn()
+        cy.clickAddToCartBtnFirstItem()
         cy.get('.shopping_cart_badge').should('contain', 1)
     }
 
     verifyRemoveItemBtn() {
-        clickAddToCartBtn()
+        cy.clickAddToCartBtnFirstItem()
         cy.get('.inventory_item').find('[data-test="remove-sauce-labs-backpack"]')
             .should('contain.text', 'Remove').click()
         cy.get('.shopping_cart_badge').should('not.exist')
