@@ -3,13 +3,14 @@ import { onHeaderPage } from "../support/pages/headerPage";
 import { onSideBarMenu } from "../support/pages/sideBarPage";
 import { onInventoryListPage } from "../support/pages/inventoryListPage";
 import { onCartPage } from "../support/pages/cartPage";
+import { onCheckOutPage } from "../support/pages/checkOutPage";
 
 describe('Verifies smooth login', () => {
-
     beforeEach('Clear data before each session', () => {
         cy.session('Clear data', () => {
         })
     })
+
     it('Login and logout without', () => {
         cy.openLoginPage()
         onLoginPage.loginAllUsersNoIssues()
@@ -27,7 +28,6 @@ describe('Verifies smooth login', () => {
 })
 
 describe('Verifies side-bar menu', () => {
-
     beforeEach('Login as standard user', () => {
         cy.openLoginPage()
         cy.loginAsStandardUser()
@@ -44,7 +44,6 @@ describe('Verifies side-bar menu', () => {
 })
 
 describe('Verifies primary Header', () => {
-
     beforeEach('Login as standard user', () => {
         cy.openLoginPage()
         cy.loginAsStandardUser()
@@ -60,7 +59,6 @@ describe('Verifies primary Header', () => {
 })
 
 describe('Verifies inventory list', () => {
-
     beforeEach('Login as standard user', () => {
         cy.openLoginPage()
         cy.loginAsStandardUser()
@@ -92,7 +90,6 @@ describe('Verifies inventory list', () => {
 })
 
 describe('Verifies cart page', () => {
-
     beforeEach(() => {
         cy.openLoginPage()
         cy.loginAsStandardUser()
@@ -115,4 +112,33 @@ describe('Verifies cart page', () => {
 
 })
 
+describe('Verifies checkout page', () => {
+    beforeEach(() => {
+        cy.openLoginPage()
+        cy.loginAsStandardUser()
+        cy.clickAddToCartBtnFirstItem()
+        cy.clickAddToCartBtnSecondItem()
+        onCartPage.goToTheCart()
+        onCartPage.clickOnCheckOutBtn()
+    })
 
+    it('Verifies checkout page', () => {
+        onCheckOutPage.verifyCheckOutPage()
+    })
+
+    it('Fill out checkout form', () => {
+        onCheckOutPage.fillOutCheckOutFormAndSubmit()
+    })
+
+    it('Cant submit checkout form without first name', () => {
+        onCheckOutPage.fillOutFormWithoutFirstName()
+    })
+
+    it('Cant submit checkout form without last name', () => {
+        onCheckOutPage.fillOutFormWithoutLastName()
+    })
+
+    it('Cant submit checkout form without postcode', () => {
+        onCheckOutPage.fillOutFormWithoutPostcode()
+    })
+})

@@ -4,7 +4,7 @@ export class CartPage {
 
     goToTheCart() {
         cy.get('#shopping_cart_container').click()
-        cy.url('https://www.saucedemo.com/cart.html')
+        cy.url().should('eq', 'https://www.saucedemo.com/cart.html')
     }
 
     cartItemCount() {
@@ -24,7 +24,7 @@ export class CartPage {
 
     clickOnCheckOutBtn() {
         cy.get('[data-test="checkout"]').click()
-        cy.url('https://www.saucedemo.com/checkout-step-one.html')
+        cy.url().should('eq', 'https://www.saucedemo.com/checkout-step-one.html')
     }
     }
 
