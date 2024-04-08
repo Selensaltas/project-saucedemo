@@ -11,7 +11,7 @@ describe('Verifies smooth login', () => {
         })
     })
 
-    it('Login and logout without', () => {
+    it('Login and logout without issues', () => {
         cy.openLoginPage()
         onLoginPage.loginAllUsersNoIssues()
     })
